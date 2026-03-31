@@ -187,7 +187,7 @@ export function MerchantDrawer({
                       <span
                         className={`tabular-nums ${metricToneClass(row.purchasesPerFanIndex, purchasesPerFanScale.baseline)}`}
                       >
-                        {row.purchasesPerFanIndex.toFixed(1)}
+                        {row.purchasesPerFanIndex.toFixed(0)}
                       </span>
                       <RelativeHeatBar
                         value={row.purchasesPerFanIndex}
@@ -202,7 +202,7 @@ export function MerchantDrawer({
                       <span
                         className={`tabular-nums ${metricToneClass(row.compositeIndex, compositeScale.baseline)}`}
                       >
-                        {row.compositeIndex.toFixed(1)}
+                        {row.compositeIndex.toFixed(0)}
                       </span>
                       <RelativeHeatBar
                         value={row.compositeIndex}
