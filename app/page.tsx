@@ -89,9 +89,9 @@ export default function HomePage() {
     : "Audience Intelligence";
 
   const rightColumnContent =
-    viewMode === "propensity" ? (
+    viewMode === "momentum" ? (
       <section className="rounded-xl border border-slate-200 bg-white p-8 text-center">
-        <h2 className="font-heading text-2xl text-black">Propensity Score View</h2>
+        <h2 className="font-heading text-2xl text-black">Momentum Score View</h2>
         <p className="mt-2 text-black/70">
           Coming Soon: this view will include advanced scoring and charting.
         </p>

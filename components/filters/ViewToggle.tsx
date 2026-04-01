@@ -2,7 +2,7 @@
 
 import { Button } from "@genius-sports/gs-marketing-ui";
 
-export type AudienceViewMode = "standard" | "propensity";
+export type AudienceViewMode = "standard" | "momentum";
 
 type ViewToggleProps = {
   value: AudienceViewMode;
@@ -18,17 +18,25 @@ export function ViewToggle({ value, onChange }: ViewToggleProps) {
           variant={value === "standard" ? "solidAccent" : "outlineOnDark"}
           onClick={() => onChange("standard")}
           type="button"
-          className="w-full"
+          className={
+            value === "standard"
+              ? "w-full !border-black !bg-black !text-white hover:!bg-black/90"
+              : "w-full !border-slate-300 !bg-white !text-black hover:!bg-slate-50"
+          }
         >
-          Standard
+          Standard View
         </Button>
         <Button
-          variant={value === "propensity" ? "solidAccent" : "outlineOnDark"}
-          onClick={() => onChange("propensity")}
+          variant={value === "momentum" ? "solidAccent" : "outlineOnDark"}
+          onClick={() => onChange("momentum")}
           type="button"
-          className="w-full"
+          className={
+            value === "momentum"
+              ? "w-full !border-black !bg-black !text-white hover:!bg-black/90"
+              : "w-full !border-slate-300 !bg-white !text-black hover:!bg-slate-50"
+          }
         >
-          Propensity Score
+          Momentum Score
         </Button>
       </div>
     </div>

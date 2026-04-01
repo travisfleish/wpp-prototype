@@ -58,7 +58,7 @@ export async function POST(req: NextRequest) {
       return {
         communityId: community?.id ?? communityKey.toLowerCase(),
         communityName: community?.name ?? communityKey,
-        percentFans: toNumber(row.PERC_AUDIENCE ?? row.perc_audience),
+        percentFans: toNumber(row.PERC_AUDIENCE ?? row.perc_audience) * 100,
         purchasesPerFanIndex: toNumber(row.PERC_INDEX ?? row.perc_index),
         compositeIndex: toNumber(row.PPC_INDEX ?? row.ppc_index),
       };
