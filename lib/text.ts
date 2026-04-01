@@ -1,4 +1,8 @@
 const ACRONYM_TOKEN_PATTERN = /^[A-Z0-9]{2,4}$/;
+const BRAND_DISPLAY_OVERRIDES: Record<string, string> = {
+  AIRBNB: "AirBnB",
+  FORD: "Ford",
+};
 
 function toDisplayWord(word: string): string {
   if (!word) return word;
@@ -19,6 +23,9 @@ function toDisplayToken(token: string): string {
 }
 
 export function formatBrandDisplayName(name: string): string {
+  const override = BRAND_DISPLAY_OVERRIDES[name.toUpperCase()];
+  if (override) return override;
+
   return name
     .split(/\s+/)
     .map((token) => toDisplayToken(token))

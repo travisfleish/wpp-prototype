@@ -3,7 +3,9 @@
 import { useMemo } from "react";
 
 import { BRANDS } from "@/lib/data/brands";
+import { SelectMenu } from "@/components/filters/SelectMenu";
 import { formatBrandDisplayName } from "@/lib/text";
+import { selectLabelClassName } from "@/components/filters/selectStyles";
 
 type BrandSelectProps = {
   value?: string;
@@ -35,20 +37,14 @@ export function BrandSelect({
 
   return (
     <div className="space-y-2">
-      <label className="text-xs font-semibold uppercase tracking-wide text-black/70">Brand</label>
-      <select
-        value={value ?? ""}
-        onChange={(event) => onChange(event.target.value || undefined)}
+      <label className={selectLabelClassName}>Brand</label>
+      <SelectMenu
+        value={value}
+        options={sortedBrands.map((brand) => ({ value: brand.id, label: brand.displayName }))}
+        placeholder="Select brand"
+        onChange={onChange}
         disabled={disabled}
-        className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-black focus:border-accent focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
-      >
-        <option value="">Select brand</option>
-        {sortedBrands.map((brand) => (
-          <option key={brand.id} value={brand.id}>
-            {brand.displayName}
-          </option>
-        ))}
-      </select>
+      />
     </div>
   );
 }

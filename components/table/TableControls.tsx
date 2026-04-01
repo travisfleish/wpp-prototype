@@ -1,5 +1,7 @@
 "use client";
 
+import { selectFieldClassName, selectLabelClassName } from "@/components/filters/selectStyles";
+
 type TableControlsProps = {
   rowsPerPage: number;
   onRowsPerPageChange: (value: number) => void;
@@ -26,11 +28,11 @@ export function TableControls({
   return (
     <div className="mb-4 flex flex-wrap items-end justify-between gap-4 rounded-lg border border-slate-200 bg-white p-4">
       <div className="flex items-center gap-3">
-        <label className="text-xs uppercase tracking-wide text-black/70">Rows per page</label>
+        <label className={selectLabelClassName}>Rows per page</label>
         <select
           value={rowsPerPage}
           onChange={(event) => onRowsPerPageChange(Number(event.target.value))}
-          className="rounded-md border border-slate-300 bg-white px-2 py-1 text-sm text-black focus:border-accent focus:outline-none"
+          className={`${selectFieldClassName} w-auto py-1 pl-2 pr-8`}
         >
           {[10, 25, 50, 100].map((size) => (
             <option key={size} value={size}>

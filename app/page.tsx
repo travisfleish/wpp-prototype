@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 import { AppShell } from "@/components/layout/AppShell";
 import { FilterPanel } from "@/components/filters/FilterPanel";
 import type { AudienceViewMode } from "@/components/filters/ViewToggle";
+import { MomentumScoreView } from "@/components/momentum/MomentumScoreView";
 import { AudienceTable } from "@/components/table/AudienceTable";
 import { MerchantDrawer } from "@/components/table/MerchantDrawer";
 import { TableControls } from "@/components/table/TableControls";
@@ -90,12 +91,16 @@ export default function HomePage() {
 
   const rightColumnContent =
     viewMode === "momentum" ? (
-      <section className="rounded-xl border border-slate-200 bg-white p-8 text-center">
-        <h2 className="font-heading text-2xl text-black">Momentum Score View</h2>
-        <p className="mt-2 text-black/70">
-          Coming Soon: this view will include advanced scoring and charting.
-        </p>
-      </section>
+      selectedBrand ? (
+        <MomentumScoreView brand={selectedBrand} />
+      ) : (
+        <section className="rounded-xl border border-dashed border-slate-300 bg-white p-8 text-center">
+          <h2 className="font-heading text-2xl text-black">Momentum Score View</h2>
+          <p className="mt-2 text-black/70">
+            Select a brand to enable Momentum Score.
+          </p>
+        </section>
+      )
     ) : (
       <>
         <h1 className="mb-4 font-heading text-3xl text-black">{audienceHeaderTitle}</h1>
@@ -154,16 +159,27 @@ export default function HomePage() {
           onBrandChange={(brandId) => {
             setSelectedBrandId(brandId);
             setSelectedCommunity(null);
+            if (!brandId && viewMode === "momentum") {
+              setViewMode("standard");
+            }
           }}
           onCategoryChange={(categoryId) => {
             setSelectedCategoryId(categoryId);
             setSelectedCommunity(null);
+            if (categoryId && viewMode === "momentum") {
+              setViewMode("standard");
+            }
           }}
           onStatesChange={(states) => {
             setSelectedStates(states);
             setSelectedCommunity(null);
           }}
-          onViewModeChange={setViewMode}
+          onViewModeChange={(nextMode) => {
+            if (nextMode === "momentum" && !selectedBrandId) {
+              return;
+            }
+            setViewMode(nextMode);
+          }}
         />
       }
     >

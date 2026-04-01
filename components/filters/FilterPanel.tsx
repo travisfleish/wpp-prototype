@@ -47,7 +47,11 @@ export function FilterPanel({
 
         <StateSelect selectedStates={selectedStates} onChange={onStatesChange} />
 
-        <ViewToggle value={viewMode} onChange={onViewModeChange} />
+        <ViewToggle
+          value={viewMode}
+          momentumEnabled={Boolean(selectedBrandId)}
+          onChange={onViewModeChange}
+        />
       </div>
     </div>
   );
